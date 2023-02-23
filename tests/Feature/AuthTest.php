@@ -108,7 +108,6 @@ class AuthTest extends TestCase
     {
 
         $response = $this->post(route('logout'));
-
         $response->assertRedirect(route('login.create'));
     }
 }
