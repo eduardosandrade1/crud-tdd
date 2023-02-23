@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -26,9 +28,7 @@ class AuthController extends Controller
             ]);
 
             if ( !$attempt ) {
-                Log::alert('Não logou no test');
-                Log::alert($request->all());
-                return redirect()->back();
+                return redirect()->route('login.create');
             }
 
             return redirect()->route('home');
@@ -60,5 +60,14 @@ class AuthController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+
+        return redirect()->route('login.create');
+
     }
 }

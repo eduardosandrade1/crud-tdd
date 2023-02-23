@@ -10,3 +10,4 @@ Route::prefix('login')->name('login.')->group(function () {
 
 });
 
+Route::middleware('auth')->post('/logout', [AuthController::class, 'logout'])->name('logout');
