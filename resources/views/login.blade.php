@@ -13,6 +13,15 @@
             <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
         </div>
         <div class="mb-3 form-check">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $key => $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Lembrar dos meus dados</label>
         </div>

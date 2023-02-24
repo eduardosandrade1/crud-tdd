@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
@@ -18,7 +18,7 @@ class AuthController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
         try {
 
@@ -28,7 +28,7 @@ class AuthController extends Controller
             ]);
 
             if ( !$attempt ) {
-                return redirect()->route('login.create');
+                return redirect()->route('login.create')->withErrors('Invalid email or password. Try again!');
             }
 
             return redirect()->route('home');

@@ -49,6 +49,7 @@ class AuthTest extends TestCase
 
 
         $response->assertRedirect(route('login.create'));
+        $response->assertSessionHasErrors();
 
     }
 
@@ -68,6 +69,7 @@ class AuthTest extends TestCase
         ]);
 
         $response->assertRedirect(route('login.create'));
+        $response->assertSessionHasErrors();
     }
 
     public function test_user_can_not_login_with_incorrect_email_and_password(): void
@@ -80,6 +82,7 @@ class AuthTest extends TestCase
 
 
         $response->assertRedirect(route('login.create'));
+        $response->assertSessionHasErrors();
 
     }
 
